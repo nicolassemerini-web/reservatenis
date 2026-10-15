@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { crearClienteServidor } from "@/lib/supabase/server";
 import { BotonCerrarSesion } from "@/components/BotonCerrarSesion";
 import styles from "./page.module.css";
@@ -19,19 +20,19 @@ export default async function Administracion() {
       </header>
 
       <section className={styles.secciones}>
-        <div className={styles.tarjeta}>
+        <Link href="/admin/horarios" className={styles.tarjeta}>
           <h2 className={styles.tarjetaTitulo}>Horarios semanales</h2>
           <p className={styles.tarjetaDescripcion}>
-            Próximamente: configurar los días y franjas de apertura.
+            Configurar los días y franjas de apertura.
           </p>
-        </div>
+        </Link>
 
-        <div className={styles.tarjeta}>
+        <Link href="/admin/excepciones" className={styles.tarjeta}>
           <h2 className={styles.tarjetaTitulo}>Excepciones y bloqueos</h2>
           <p className={styles.tarjetaDescripcion}>
-            Próximamente: cerrar fechas concretas o bloquear turnos puntuales.
+            Cerrar fechas concretas o bloquear turnos puntuales.
           </p>
-        </div>
+        </Link>
 
         <div className={styles.tarjeta}>
           <h2 className={styles.tarjetaTitulo}>Reservas</h2>
@@ -40,12 +41,12 @@ export default async function Administracion() {
           </p>
         </div>
 
-        <div className={styles.tarjeta}>
+        <Link href="/admin/configuracion" className={styles.tarjeta}>
           <h2 className={styles.tarjetaTitulo}>Configuración</h2>
           <p className={styles.tarjetaDescripcion}>
-            Próximamente: duración de los turnos y plazo de cancelación.
+            Duración de los turnos y plazo de cancelación.
           </p>
-        </div>
+        </Link>
       </section>
     </main>
   );

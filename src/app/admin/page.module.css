@@ -31,10 +31,18 @@
 }
 
 .tarjeta {
+  display: block;
   padding: 1.5rem;
   background: var(--color-superficie);
   border: 1px solid var(--color-borde);
   border-radius: 0.75rem;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+a.tarjeta:hover {
+  border-color: var(--color-primario);
+  transform: translateY(-2px);
 }
 
 .tarjetaTitulo {
