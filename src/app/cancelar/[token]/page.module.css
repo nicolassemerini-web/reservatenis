@@ -1,0 +1,56 @@
+.tarjeta {
+  max-width: 480px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 0.75rem;
+  text-align: center;
+}
+
+.titulo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primario-oscuro);
+  margin-bottom: 0.75rem;
+}
+
+.detalle {
+  margin-bottom: 1.5rem;
+}
+
+.boton {
+  padding: 0.7rem 1.25rem;
+  border: 1px solid #a3281f;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #a3281f;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton:hover {
+  background: #a3281f;
+  color: white;
+}
+
+.boton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mensajeExito {
+  color: var(--color-primario-oscuro);
+  font-weight: 600;
+}
+
+.mensajeError {
+  color: #a3281f;
+  font-weight: 600;
+}
+
+.volver {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}

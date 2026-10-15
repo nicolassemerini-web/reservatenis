@@ -1,0 +1,45 @@
+.tarjeta {
+  max-width: 480px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 0.75rem;
+  text-align: center;
+}
+
+.titulo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primario-oscuro);
+  margin-bottom: 0.75rem;
+}
+
+.detalle {
+  margin-bottom: 1.5rem;
+}
+
+.cajaEnlace {
+  background: var(--color-fondo);
+  border: 1px dashed var(--color-borde);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.cajaEnlaceTitulo {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.enlace {
+  word-break: break-all;
+  font-size: 0.875rem;
+  color: var(--color-primario-oscuro);
+}
+
+.volver {
+  font-size: 0.9rem;
+}
