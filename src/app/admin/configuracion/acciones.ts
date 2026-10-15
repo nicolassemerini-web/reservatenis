@@ -8,12 +8,16 @@ export async function actualizarConfiguracion(formData: FormData) {
 
   const duracionTurnoMinutos = Number(formData.get("duracion_turno_minutos"));
   const plazoCancelacionHoras = Number(formData.get("plazo_cancelacion_horas"));
+  const limiteReservasPorContacto = Number(
+    formData.get("limite_reservas_por_contacto"),
+  );
 
   const { error } = await supabase
     .from("configuracion")
     .update({
       duracion_turno_minutos: duracionTurnoMinutos,
       plazo_cancelacion_horas: plazoCancelacionHoras,
+      limite_reservas_por_contacto: limiteReservasPorContacto,
       actualizado_en: new Date().toISOString(),
     })
     .eq("id", 1);

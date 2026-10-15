@@ -55,6 +55,21 @@ export default async function Configuracion() {
               />
             </div>
 
+            <div className={styles.campo}>
+              <label className={styles.etiqueta} htmlFor="limite_reservas_por_contacto">
+                Máximo de reservas activas por mismo contacto
+              </label>
+              <input
+                id="limite_reservas_por_contacto"
+                name="limite_reservas_por_contacto"
+                type="number"
+                min={1}
+                className={styles.input}
+                defaultValue={configuracion.limite_reservas_por_contacto}
+                required
+              />
+            </div>
+
             <button type="submit" className={styles.boton}>
               Guardar
             </button>
@@ -64,6 +79,8 @@ export default async function Configuracion() {
         <p className={styles.ayuda}>
           Cambiar la duración de los turnos no modifica las reservas ya
           existentes, solo los huecos que se calculen a partir de ahora.
+          El máximo de reservas por contacto se aplica a reservas confirmadas
+          y futuras (no cuenta lo ya cancelado o lo ya jugado).
         </p>
       </section>
     </main>

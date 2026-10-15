@@ -34,12 +34,12 @@ export default async function Administracion() {
           </p>
         </Link>
 
-        <div className={styles.tarjeta}>
+        <Link href="/admin/reservas" className={styles.tarjeta}>
           <h2 className={styles.tarjetaTitulo}>Reservas</h2>
           <p className={styles.tarjetaDescripcion}>
-            Próximamente: consultar, modificar y cancelar reservas.
+            Consultar, cancelar o eliminar reservas.
           </p>
-        </div>
+        </Link>
 
         <Link href="/admin/configuracion" className={styles.tarjeta}>
           <h2 className={styles.tarjetaTitulo}>Configuración</h2>
