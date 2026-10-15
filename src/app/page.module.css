@@ -1,0 +1,65 @@
+.cabecera {
+  padding: 2.5rem 0 1.5rem;
+  text-align: center;
+}
+
+.titulo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primario-oscuro);
+}
+
+.subtitulo {
+  margin-top: 0.5rem;
+  color: var(--color-texto);
+  opacity: 0.75;
+}
+
+.navegacion {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem 0 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .navegacion {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.75rem;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.tarjeta:hover {
+  border-color: var(--color-primario);
+  transform: translateY(-2px);
+}
+
+.tarjetaTitulo {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-primario-oscuro);
+}
+
+.tarjetaDescripcion {
+  color: var(--color-texto);
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+.pie {
+  padding: 1.5rem 0 2.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
