@@ -3,6 +3,7 @@
 import { randomUUID } from "crypto";
 import { redirect } from "next/navigation";
 import { crearClienteServidor } from "@/lib/supabase/server";
+import { enviarCorreoConfirmacion } from "@/lib/email";
 
 export type EstadoReserva = { error: string } | null;
 
@@ -45,6 +46,20 @@ export async function crearReserva(
       return { error: error.message };
     }
     return { error: "No se pudo completar la reserva. Inténtalo de nuevo." };
+  }
+
+  // Mejor esfuerzo: si el correo falla, la reserva ya quedó hecha y el
+  // enlace de cancelación igual se muestra en la pantalla de confirmación.
+  const resultadoCorreo = await enviarCorreoConfirmacion({
+    destinatario: medioContacto,
+    nombre: nombreContacto,
+    fecha,
+    horaInicio,
+    horaFin,
+    token,
+  });
+  if (!resultadoCorreo.enviado) {
+    console.error("No se pudo enviar el correo de confirmación:", resultadoCorreo.motivo);
   }
 
   const parametros = new URLSearchParams({
