@@ -2,6 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { crearClienteServidor } from "@/lib/supabase/server";
+import { buscarReservasAfectadasPorFranjaSemanal } from "@/lib/avisos";
+import type { EstadoAviso } from "@/components/BotonConAviso";
 
 export async function crearFranja(formData: FormData) {
   const supabase = await crearClienteServidor();
@@ -23,9 +25,29 @@ export async function crearFranja(formData: FormData) {
   revalidatePath("/admin/horarios");
 }
 
-export async function eliminarFranja(formData: FormData) {
-  const supabase = await crearClienteServidor();
+export async function eliminarFranja(
+  _estadoPrevio: EstadoAviso,
+  formData: FormData,
+): Promise<EstadoAviso> {
   const id = String(formData.get("id"));
+  const diaSemana = Number(formData.get("dia_semana"));
+  const horaInicio = String(formData.get("hora_inicio"));
+  const horaFin = String(formData.get("hora_fin"));
+  const confirmar = formData.get("confirmar") === "true";
+
+  const supabase = await crearClienteServidor();
+
+  if (!confirmar) {
+    const reservas = await buscarReservasAfectadasPorFranjaSemanal(
+      supabase,
+      diaSemana,
+      horaInicio,
+      horaFin,
+    );
+    if (reservas.length > 0) {
+      return { ok: false, reservas };
+    }
+  }
 
   const { error } = await supabase.from("horario_semanal").delete().eq("id", id);
 
@@ -34,12 +56,33 @@ export async function eliminarFranja(formData: FormData) {
   }
 
   revalidatePath("/admin/horarios");
+  return { ok: true };
 }
 
-export async function alternarActivo(formData: FormData) {
-  const supabase = await crearClienteServidor();
+export async function alternarActivo(
+  _estadoPrevio: EstadoAviso,
+  formData: FormData,
+): Promise<EstadoAviso> {
   const id = String(formData.get("id"));
   const activo = formData.get("activo") === "true";
+  const diaSemana = Number(formData.get("dia_semana"));
+  const horaInicio = String(formData.get("hora_inicio"));
+  const horaFin = String(formData.get("hora_fin"));
+  const confirmar = formData.get("confirmar") === "true";
+
+  const supabase = await crearClienteServidor();
+
+  if (activo && !confirmar) {
+    const reservas = await buscarReservasAfectadasPorFranjaSemanal(
+      supabase,
+      diaSemana,
+      horaInicio,
+      horaFin,
+    );
+    if (reservas.length > 0) {
+      return { ok: false, reservas };
+    }
+  }
 
   const { error } = await supabase
     .from("horario_semanal")
@@ -51,4 +94,5 @@ export async function alternarActivo(formData: FormData) {
   }
 
   revalidatePath("/admin/horarios");
+  return { ok: true };
 }

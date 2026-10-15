@@ -1,12 +1,8 @@
 import Link from "next/link";
 import { crearClienteServidor } from "@/lib/supabase/server";
-import { CampoFechaConToggle } from "@/components/CampoFechaConToggle";
-import {
-  crearExcepcion,
-  eliminarExcepcion,
-  crearBloqueo,
-  eliminarBloqueo,
-} from "./acciones";
+import { eliminarExcepcion, eliminarBloqueo } from "./acciones";
+import { FormularioExcepcion } from "./FormularioExcepcion";
+import { FormularioBloqueo } from "./FormularioBloqueo";
 import styles from "../admin.module.css";
 
 function formatearFecha(fecha: string) {
@@ -85,49 +81,7 @@ export default async function Excepciones() {
           </table>
         )}
 
-        <form action={crearExcepcion} className={styles.formulario}>
-          <div className={styles.campo}>
-            <label className={styles.etiqueta} htmlFor="fecha-excepcion">
-              Fecha
-            </label>
-            <input
-              id="fecha-excepcion"
-              name="fecha"
-              type="date"
-              className={styles.input}
-              required
-            />
-          </div>
-
-          <CampoFechaConToggle
-            idPrefijo="excepcion"
-            nombreCheckbox="cerrado"
-            etiquetaCheckbox="Cerrado todo el día"
-            nombreDesde="hora_inicio"
-            nombreHasta="hora_fin"
-            claseCasilla={styles.checkboxCampo}
-            claseCampo={styles.campo}
-            claseEtiqueta={styles.etiqueta}
-            claseInput={styles.input}
-          />
-
-          <div className={styles.campo}>
-            <label className={styles.etiqueta} htmlFor="motivo-excepcion">
-              Motivo (opcional)
-            </label>
-            <input
-              id="motivo-excepcion"
-              name="motivo"
-              type="text"
-              className={styles.input}
-              placeholder="Festivo local"
-            />
-          </div>
-
-          <button type="submit" className={styles.boton}>
-            Añadir excepción
-          </button>
-        </form>
+        <FormularioExcepcion />
       </section>
 
       <section className={styles.seccion}>
@@ -179,49 +133,7 @@ export default async function Excepciones() {
           </table>
         )}
 
-        <form action={crearBloqueo} className={styles.formulario}>
-          <div className={styles.campo}>
-            <label className={styles.etiqueta} htmlFor="fecha-bloqueo">
-              Fecha
-            </label>
-            <input
-              id="fecha-bloqueo"
-              name="fecha"
-              type="date"
-              className={styles.input}
-              required
-            />
-          </div>
-
-          <CampoFechaConToggle
-            idPrefijo="bloqueo"
-            nombreCheckbox="dia_completo"
-            etiquetaCheckbox="Jornada completa"
-            nombreDesde="hora_inicio"
-            nombreHasta="hora_fin"
-            claseCasilla={styles.checkboxCampo}
-            claseCampo={styles.campo}
-            claseEtiqueta={styles.etiqueta}
-            claseInput={styles.input}
-          />
-
-          <div className={styles.campo}>
-            <label className={styles.etiqueta} htmlFor="motivo-bloqueo">
-              Motivo (opcional)
-            </label>
-            <input
-              id="motivo-bloqueo"
-              name="motivo"
-              type="text"
-              className={styles.input}
-              placeholder="Mantenimiento de la pista"
-            />
-          </div>
-
-          <button type="submit" className={styles.boton}>
-            Añadir bloqueo
-          </button>
-        </form>
+        <FormularioBloqueo />
       </section>
     </main>
   );

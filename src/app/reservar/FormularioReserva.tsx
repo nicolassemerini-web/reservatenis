@@ -27,6 +27,8 @@ export function FormularioReserva({ dias }: { dias: DisponibilidadDia[] }) {
     fin: string;
   } | null>(null);
   const [estado, formAction, enviando] = useActionState(crearReserva, null);
+  const [nombreContacto, setNombreContacto] = useState("");
+  const [medioContacto, setMedioContacto] = useState("");
 
   const diaActivo = dias[indiceDia];
 
@@ -95,6 +97,8 @@ export function FormularioReserva({ dias }: { dias: DisponibilidadDia[] }) {
               name="nombre_contacto"
               type="text"
               className={styles.input}
+              value={nombreContacto}
+              onChange={(e) => setNombreContacto(e.target.value)}
               required
             />
           </div>
@@ -108,6 +112,8 @@ export function FormularioReserva({ dias }: { dias: DisponibilidadDia[] }) {
               name="medio_contacto"
               type="text"
               className={styles.input}
+              value={medioContacto}
+              onChange={(e) => setMedioContacto(e.target.value)}
               required
             />
           </div>
