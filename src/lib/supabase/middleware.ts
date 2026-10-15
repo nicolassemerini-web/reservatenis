@@ -26,7 +26,9 @@ export async function actualizarSesion(request: NextRequest) {
   );
 
   // Refresca la sesión de Supabase Auth si el token ha expirado.
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  return respuesta;
+  return { respuesta, user };
 }
